@@ -32,5 +32,7 @@ def get_html(url):
 def get_content(url):
     html = BeautifulSoup(get_html(url).content,"lxml")
     print(type(html))
+    title = html.select("#content > h1:nth-child(2) > span")[0]
     doc = html.select("#link-report > div")[0]
+    print(title.text)
     print(doc.text)
