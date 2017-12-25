@@ -2,6 +2,7 @@ import requests
 import re
 from bs4 import BeautifulSoup
 from concurrent import futures
+from database import db_open,db_insert
 # use Proxy_Pool
 def get_proxy():
     return requests.get("http://127.0.0.1:5010/get/").content
@@ -14,6 +15,10 @@ def data_out(data):
     fp = open("out.txt","a+")
     fp.write(data)
     fp.close()
+
+def trans2database(title,content):
+    connection = db_open()
+    db_insert(connection, title,content)
 
 def spider_url():
     uri = "https://movie.douban.com/people/seanRebn/collect"
@@ -36,7 +41,7 @@ def parse_html(req):
     title = html.select("head > title")[0]
     content = html.select("#link-report > div")[0]
     #print(title.text)
-    return title.text+"\n"+content.text
+    return title.text, content.text
     #print(doc.text)
 
 def get_content(url):
@@ -45,5 +50,5 @@ def get_content(url):
     #     result = executor.map(get_html, url)
         #print(list(result)[0])
     req = get_html(url)
-    data = parse_html(req)
-    data_out(data)
+    title,content = parse_html(req)
+    trans2database(title,content)
