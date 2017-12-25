@@ -1,3 +1,4 @@
 *.txt
 *.rdb
 __pycache__/
+_pycache_/
