@@ -2,6 +2,13 @@
 
 # Tutorial
 
+运行mysql
+```
+brew services start mysql
+mysql -u root -p
+source init.sql
+```
+
 首先，执行爬虫池
 ```
 cd Proxy_Pool/Run
