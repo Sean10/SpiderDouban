@@ -30,6 +30,10 @@ python3 spider.py
 python3 worker.py
 ```
 
+# TodoList
+* 数据库分表存储
+* 爬取全站
+
 # 参考资料
 1. [Python BloomFilter](https://axiak.github.io/pybloomfiltermmap/ref.html)
 2. [rq](http://python-rq.org/docs/)
